@@ -33,51 +33,47 @@ function deleteCheck(e){
 }
 const complete = (item) =>{
     item.innerText = 'Complete'
-    item.classList.add('complete')
+    const todos = todoList.childNodes;
+    todos[0].classList.remove('notcomplete')
+    todos[0].classList.add('complete')
+
+    console.log(todos[0].classList)
+    
 
 }
 const notcomplete = (item) =>{
 
     item.innerText = 'Not Complete';
-    item.classList.add('notcomplete')
+
+    const todos = todoList.childNodes;
+    todos[0].classList.remove('complete')
+    todos[0].classList.add('notcomplete')
+    
+    console.log(todos[0].classList)
 
    
 }
-function filterEvent(e){
-    const todos = todoList.childNodes;
-    todos.forEach(function(todo){
-        switch(e.target.value){
-            case "all":
-                todo.style.display = 'flex'
-            case "completed":
-                if(todo.classList.contains('completed')){
-                    todo.style.display = 'flex'
-                }
-                else{
-                    todo.style.display = 'none'
-                }
-        }
-    }
-)
-  
-}
+
 
 function addTodo(e){
-    //todo div
+    //todo divcomplete
     e.preventDefault();
     const todoDiv = document.createElement('div');
     todoDiv.classList.add("todo");
+    todoDiv.classList.add('notcomplete')
     //create list
     const newTodo = document.createElement('li');
     newTodo.innerText = todoInput.value;
     newTodo.classList.add('todo-item');
+    
     todoDiv.appendChild(newTodo);
 
  
     //check mark button
     const completedButton = document.createElement('button');
-    completedButton.innerText = 'Complete';
+    completedButton.innerText = 'Not complete';
     completedButton.classList.add('complete-button');
+    
     todoDiv.appendChild(completedButton);
 
     //trash button
@@ -92,4 +88,43 @@ function addTodo(e){
     //clear
 
     todoInput.value = "";
+}
+
+function filterEvent(e){
+    const todos = todoList.childNodes;
+    todos.forEach(function(todo){
+        switch(e.target.value){
+            case "all":
+                todo.style.display = 'flex'
+     
+                break
+            
+            case "completed":
+                if(todo.classList.contains('complete')){
+                    todo.style.display = 'flex'
+     
+                    break
+                }
+                else{
+                    todo.style.display = 'none'
+                    break
+   
+                }
+                
+                
+            case "uncompleted":
+                if(todo.classList.contains('notcomplete')){
+                    todo.style.display = 'flex'
+          
+                    break
+                    }
+                    else{
+                        todo.style.display = 'none'
+                        break
+                    }
+
+        }
+    }
+)
+  
 }
