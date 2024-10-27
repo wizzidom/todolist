@@ -4,13 +4,19 @@ const todoInput = document.querySelector('.todo-input')
 const todoButton = document.querySelector('.todo-button')
 const todoList = document.querySelector('.todo-list')
 const filterOption = document.querySelector('.filter-todo')
-
+const reset = document.querySelector('#reset')
 //event listeners
 todoButton.addEventListener('click', addTodo);
 todoList.addEventListener('click', deleteCheck);
 filterOption.addEventListener('click', filterEvent)
+reset.addEventListener('click', resetTodo)
 
 //funtions
+
+function resetTodo(){
+    todoList.innerHTML = "";
+}
+
 function deleteCheck(e){
     const item = e.target;
 
